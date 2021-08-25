@@ -1,9 +1,6 @@
 package testcases.common;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -59,9 +56,8 @@ public class ScanningInput {
                 try {
                     formatter.parse(birthDate);
                     break;
-                } 
-                catch (Exception e) {
-                    System.err.print("Date of birth should be in DD/MM/YYYY format \n");
+                } catch (Exception e) {
+                    System.err.print("Date of birth should be in DD-MM-YYYY format \n");
                     Logs.printLogs("Invalid Date of Birth:" + birthDate);
                 }
             }
@@ -80,8 +76,8 @@ public class ScanningInput {
             }
 
         }
-        
-        System.out.println("User Name is = " + name + " " + "and Age is = " + age + " " + "and Birth Date is = " +birthDate + " " + "and E-mail is = " + eMail);
+
+        System.out.println("User Name is = " + name + " " + "and Age is = " + age + " " + "and Birth Date is = " + birthDate + " " + "and E-mail is = " + eMail);
     }
 
 }

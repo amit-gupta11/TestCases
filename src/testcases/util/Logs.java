@@ -1,6 +1,5 @@
 package testcases.util;
 
-
 import org.apache.log4j.FileAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -15,10 +14,11 @@ import java.util.Date;
  * @author Lenovo
  */
 public class Logs {
+
     static Logger logger = Logger.getLogger(Logs.class);
-    public static final String LOG_PATH="C:\\Users\\Public\\MyLogFile\\";
-    static
-    {
+    public static final String LOG_PATH = "C:\\Users\\Public\\MyLogFile\\";
+
+    static {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         DateFormat dateFormatDate = new SimpleDateFormat("dd_MM_yyyy");
         Date date = new Date();
@@ -42,4 +42,3 @@ public class Logs {
         logger.error(message);
     }
 }
-
