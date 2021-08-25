@@ -6,24 +6,36 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import testcases.util.Logs;
 
 public class ScanningInput {
+       
 
     public static void getInput() {
+        String name;
+        String age;
+        String birthDate;
+        String eMail;
+       
         Scanner inputReader = new Scanner(System.in);
         while (true) {
             System.out.print("Enter Name: ");
-            String userName = inputReader.nextLine();
-            if ((userName == null) || (userName.matches(".*[^a-zA-Z].*")) || userName.length() > 20 || userName.length() < 3) {
+            name = inputReader.nextLine();
+            if(name.isEmpty()){
+                System.err.print("Name Can't be Null ! \n");
+            }
+            if ((name.matches(".*[^a-zA-Z].*")) || name.length() > 20 || name.length() < 3) {
                 System.err.print("Name length should not exceed 20 characters and should not accept less than 3 character \n");
                 continue;
             } else {
+                 Logs.printLogs("Invalid Name:" + name);
                 break;
+                
             }
         }
         while (true) {
             System.out.print("Enter Age: ");
-            String age = inputReader.nextLine();
+            age = inputReader.nextLine();
             if(age.isEmpty()){
                 System.err.print("Age Can't be Null ! \n");
             }
@@ -31,35 +43,40 @@ public class ScanningInput {
                 System.err.print("Age should be numeric and between 0 to 150 \n");
                 continue;
             } else {
+                Logs.printLogs("Invalid Age:" + age);
                 break;
             }
+
         }
 
         while (true) {
             System.out.print("Enter Date of Birth: ");
-            String birthDate = inputReader.nextLine();
+            birthDate = inputReader.nextLine();
             if ((birthDate == null) || birthDate.isEmpty()) {
                 System.err.print("Date of Birth can't be NULL ! \n");
                 continue;
-            } else {
+            } else  {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("DD-MM-YYYY");
                 try {
                     Date coorectBirthdate = dateFormat.parse(birthDate);
                     break;
                 } catch (ParseException e) {
                     System.err.print("Date of birth should be in DD-MM-YYYY format \n");
+                    Logs.printLogs("Invalid Date of Birth:" + birthDate);
                 }
-
             }
+
+
         }
 
         while (true) {
             System.out.print("Enter E-mail Address: ");
-            String eMail = inputReader.nextLine();
+            eMail = inputReader.nextLine();
             Pattern validEmail = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
             Matcher matcher = validEmail.matcher(eMail);
         if(!matcher.find()){
             System.err.println("Email cant be nullL or MissMatched");
+            Logs.printLogs("Invalid E-mail:" + eMail);
         }
       
        else{
@@ -67,6 +84,10 @@ public class ScanningInput {
        }
 
         }
+       System.out.println("User Name ="+name);
+       System.out.println("Age is ="+age);
+       System.out.println("BirthDate is ="+birthDate);
+       System.out.println("E-Mail is ="+eMail);
 
     }
 }
