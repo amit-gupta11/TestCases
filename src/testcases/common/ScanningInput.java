@@ -2,6 +2,7 @@ package testcases.common;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -54,11 +55,12 @@ public class ScanningInput {
                 System.err.print("Date of Birth can't be NULL ! \n");
                 continue;
             } else {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 try {
-                    Date coorectBirthdate = dateFormat.parse(birthDate);
+                    formatter.parse(birthDate);
                     break;
-                } catch (ParseException e) {
+                } 
+                catch (Exception e) {
                     System.err.print("Date of birth should be in DD/MM/YYYY format \n");
                     Logs.printLogs("Invalid Date of Birth:" + birthDate);
                 }
